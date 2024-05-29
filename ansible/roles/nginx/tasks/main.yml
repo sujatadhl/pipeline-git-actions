@@ -1,0 +1,35 @@
+  - name: Update  apt packages
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: Install nginx
+    ansible.builtin.apt:
+      name: nginx
+      state: latest 
+
+  - name: Change Nginx Configuration file   
+    ansible.builtin.template:
+      src: nginx.conf.j2
+      dest: /etc/nginx/sites-available/default
+
+  - name: Install python
+    ansible.builtin.apt:
+      name: python3
+      state: present
+
+  - name: Ensure Python3 pip is installed
+    ansible.builtin.apt:
+      name: python3-pip
+      state: present
+
+  - name: Install botocore and boto3 
+    ansible.builtin.pip:
+      name: "{{ item }}"
+    loop:  
+      - botocore
+      - boto3
+
+  - name: Install AWS CLI
+    ansible.builtin.apt:
+      name: awscli
+      state: latest    

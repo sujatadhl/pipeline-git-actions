@@ -1,0 +1,12 @@
+---
+- hosts: nginx
+  become: true
+  gather_facts: true
+  roles:
+    - nginx
+    - node
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_region: us-east-1
+    ansible_aws_ssm_bucket_name: copy-static-website
+    ansible_aws_ssm_timeout: 3000
