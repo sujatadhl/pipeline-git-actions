@@ -26,7 +26,7 @@ jobs:
 
         - name: Terraform apply 
           run: |
-            cd Terraform
+            cd terraform
             terraform apply -var-file="var.tfvars" -auto-approve
          
 
