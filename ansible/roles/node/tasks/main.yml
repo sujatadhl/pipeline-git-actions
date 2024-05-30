@@ -7,13 +7,14 @@
       - npm   
   
   - name: Make folder in EC2 instance
-    file:
+    ansible.builtin.file:
         path: /home/ubuntu/
         state: directory
         mode: '0755'
        
   - name: Copy React-app folder from S3 to EC2
-    ansible.builtin.command: aws s3 cp s3://sujata-pipeline/react-app /home/ubuntu/react-app --recursive
+    ansible.builtin.command: 
+      cmd: aws s3 cp s3://sujata-pipeline/react-app /home/ubuntu/react-app --recursive
 
   - name: Install PM2 globally
     ansible.builtin.npm:

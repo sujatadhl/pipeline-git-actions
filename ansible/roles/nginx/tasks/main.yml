@@ -4,18 +4,17 @@
 
   - name: Install nginx
     ansible.builtin.apt:
-      name: nginx
+      name: "{{ item }}"
       state: latest 
-
+    loop: 
+      - nginx
+      - python
+      - awscli
+      
   - name: Change Nginx Configuration file   
     ansible.builtin.template:
-      src: nginx.conf.j2
-      dest: /etc/nginx/sites-available/default
-
-  - name: Install python
-    ansible.builtin.apt:
-      name: python3
-      state: present
+      src: files/nginx.conf.j2
+      dest: {{" nginx_path "}}
 
   - name: Ensure Python3 pip is installed
     ansible.builtin.apt:
@@ -27,9 +26,4 @@
       name: "{{ item }}"
     loop:  
       - botocore
-      - boto3
-
-  - name: Install AWS CLI
-    ansible.builtin.apt:
-      name: awscli
-      state: latest    
+      - boto3   
