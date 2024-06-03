@@ -69,10 +69,10 @@ jobs:
             aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
             aws-region:  ${{ env.AWS_DEFAULT_REGION }}
 
-        - name: Install Ansible
+        - name: Install dependencies
           run: |
-            pip install boto3
-            pip install ansible  
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
 
         - name: Run Ansible Playbook
           run: |

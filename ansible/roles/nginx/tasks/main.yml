@@ -2,18 +2,16 @@
     ansible.builtin.apt:
       update_cache: yes
 
-  - name: Install nginx
+  - name: Install required packages 
     ansible.builtin.apt:
       name: "{{ item }}"
       state: latest 
-    loop: 
-      - nginx
-      - python
-      - awscli
+    loop: "{{ my_packages }}"
+    
       
   - name: Change Nginx Configuration file   
-    ansible.builtin.template:
-      src: files/nginx.conf.j2
+    ansible.builtin.file:
+      src: nginx.conf
       dest: {{" nginx_path "}}
 
   - name: Ensure Python3 pip is installed
@@ -24,6 +22,5 @@
   - name: Install botocore and boto3 
     ansible.builtin.pip:
       name: "{{ item }}"
-    loop:  
-      - botocore
-      - boto3   
+    loop:  "{{ package }}"
+      

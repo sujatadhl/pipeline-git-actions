@@ -1,1 +1,12 @@
 nginx_path: /etc/nginx/sites-available/default
+
+my_packages:
+  - nginx
+  - python
+  - awscli
+
+package:
+  - botocore
+  - boto3   
+
+  

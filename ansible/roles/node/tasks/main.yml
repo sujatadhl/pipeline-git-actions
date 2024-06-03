@@ -2,9 +2,7 @@
     ansible.builtin.apt:
       name: "{{ item  }}"
       state: latest
-    loop:
-      - nodejs
-      - npm   
+    loop: "{{ node_package }}"
   
   - name: Make folder in EC2 instance
     ansible.builtin.file:
