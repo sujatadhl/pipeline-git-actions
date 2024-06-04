@@ -53,7 +53,7 @@ jobs:
             aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
         - name: Copying files to s3 bucket
-          run: aws s3 cp . s3://sujata-pipeline/
+          run: aws s3 cp . s3://sujata-pipeline --recursive
 
     configure-ec2:
       needs: add-to-s3
