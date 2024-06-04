@@ -1,7 +1,6 @@
 ---
 - hosts: nginx
   become: true
-  gather_facts: true
   roles:
     - nginx
     - node
