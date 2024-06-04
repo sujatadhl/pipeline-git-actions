@@ -1,0 +1,26 @@
+  - name: Update  apt packages
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: Install required packages 
+    ansible.builtin.apt:
+      name: "{{ item }}"
+      state: latest 
+    loop: "{{ my_packages }}"
+    
+      
+  - name: Change Nginx Configuration file   
+    ansible.builtin.file:
+      src: nginx.conf
+      dest: "{{ nginx_path }}"
+
+  - name: Ensure Python3 pip is installed
+    ansible.builtin.apt:
+      name: python3-pip
+      state: present
+
+  - name: Install botocore and boto3 
+    ansible.builtin.pip:
+      name: "{{ item }}"
+    loop:  "{{ package }}"
+      
