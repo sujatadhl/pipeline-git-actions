@@ -12,7 +12,7 @@
   - name: Change Nginx Configuration file   
     ansible.builtin.file:
       src: nginx.conf
-      dest: {{" nginx_path "}}
+      dest: "{{ nginx_path }}"
 
   - name: Ensure Python3 pip is installed
     ansible.builtin.apt:
