@@ -1,4 +1,3 @@
-# pipeline-git-actions
 # Pipeline creation using GitHub Actions 
 
 ## Task 1: Pipeline to push code base from GitHub repository to S3 bucket
